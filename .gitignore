@@ -1,0 +1,30 @@
+# CMake
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Build artifacts
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+
+# IDE - CLion/IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+# IAR local build and user settings
+iar/Debug/
+iar/Release/
+iar/settings/
+*.dep
+*.ewd.custom
+# OS
+.DS_Store
+Thumbs.db
