@@ -34,7 +34,7 @@ add_compile_options(
 )
 
 # Linker flags
-set(LINKER_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/tm4c123gh6pm.ld")
+set(LINKER_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/startup/tm4c123gh6pm.ld")
 add_link_options(
         ${CPU_FLAGS}
         -T${LINKER_SCRIPT}
@@ -49,7 +49,7 @@ include_directories(
 )
 
 # Grab all source files
-file(GLOB_RECURSE SOURCES "src/*.c")
+file(GLOB_RECURSE SOURCES "src/*.c" "startup/*.c")
 
 add_executable(${CMAKE_PROJECT_NAME}.elf ${SOURCES})
 

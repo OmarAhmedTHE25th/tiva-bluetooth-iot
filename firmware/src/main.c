@@ -1,10 +1,10 @@
-#include <stdint.h>
 #include <tm4c123gh6pm.h>
-
+#define RED_LED 1<<1
+#define BLUE_LED 1 << 2
 // function to configure:
 // PF2 as output LED
 // PF0 as input Switch
-void DIO_init()
+static void DIO_init()
 {
     // 1. Power port F
     SYSCTL_RCGCGPIO_R |= 1 << 5;
@@ -28,23 +28,23 @@ void DIO_init()
     // Pull up (1) ==> not pressed, (0) ==> pressed
     GPIO_PORTF_PUR_R |= 1 << 0;
 
-
     // 7. Digital Enable PF2 & PF0
-    GPIO_PORTF_DEN_R |= (1 << 2 | 1 << 0);
+    GPIO_PORTF_DEN_R |= 1 << 2 | 1 << 0;
 }
 int main()
 {
     DIO_init();
+    //blue led , pin 2, bit = 4 , value = 16
     while(1)
     {
         // if switch is pressed
-        if ((GPIO_PORTF_DATA_R & 1<< 0) == 1){
+        if ((GPIO_PORTF_DATA_R & 1<< 0) == 0){
             // LED ON
-            GPIO_PORTF_DATA_R |= 1 << 2;
+            GPIO_PORTF_DATA_R |= BLUE_LED;
         }
         else {
             //LED OFF
-            GPIO_PORTF_DATA_R &= ~(1 << 2);
+            GPIO_PORTF_DATA_R &= ~(BLUE_LED);
         }
     }
 }
